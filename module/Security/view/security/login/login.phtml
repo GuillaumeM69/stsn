@@ -1,0 +1,119 @@
+<?php
+// if the authentication was unsucessful than display a message 
+if ($invalidAuthentication){
+    $this->headScript()->offsetSetFile(100, '/js/login.js');
+}
+if ( !$loginFormValid)
+{
+$this->headScript()->captureStart(); ?>
+jQuery(function($) {
+$('#login-errors').show();    
+$('input[name="login[email]"]').focus();
+});
+<?php $this->headScript()->captureEnd() ;
+}
+
+if ( !$accountFormValid)
+{
+$this->headScript()->captureStart(); ?>
+jQuery(function($) {
+$('#account-errors').show();    
+$('input[name="account[firstname]"]').focus();
+});
+<?php $this->headScript()->captureEnd() ;
+}
+
+?>
+<div id='wrapper' style='width:960px;margin-left:auto;margin-right:auto;'>
+    <div id='messages' style='display:none;'>
+        Girdiğiniz kullanıcı adı ve şifre hatalıdır!
+    </div>
+
+<div style='float:left;display:inline;padding:20px 20px 20px 0;width:420px;'>
+
+<?php
+$elementForm = $this->loginForm;
+$elementForm->prepare();
+echo $this->form()->openTag($elementForm);
+?>
+<div id="login-errors" class="ui-state-error ui-corner-all" style="padding: .7em .7em;width:200px;display:none;">
+<?php foreach ($loginForm as $element) : ?>
+<?php echo $this->formElementErrors()
+                ->setMessageOpenFormat('<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>')
+                ->setMessageSeparatorString('<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>')
+                ->setMessageCloseString('</p>')
+                ->render($element);?>
+
+<?php endforeach; ?>
+</div>
+<?php
+$element = $elementForm->get('login')->get('email');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $elementForm->get('login')->get('password');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+
+$element = $elementForm->get('login')->get('submit');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+echo $this->form()->closeTag();
+?>
+</div>
+
+<div style='float:left;display:inline;padding:20px 20px 20px 20px;margin-right:0;width:420px;'>
+<?php
+$acountForm = $this->accountForm;
+
+//$elementForm->setAttribute('action', $this->url('job-title', array('action' => 'add')));
+$accountForm->prepare();
+echo $this->form()->openTag($accountForm);
+?>
+<div id="account-errors" class="ui-state-error ui-corner-all" style="padding: .7em .7em;width:200px;display:none;">
+<?php foreach ($accountForm as $element) : ?>
+<?php echo $this->formElementErrors()
+                ->setMessageOpenFormat('<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>')
+                ->setMessageSeparatorString('<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>')
+                ->setMessageCloseString('</p>')
+                ->render($element);?>
+
+<?php endforeach; ?>
+</div>
+<?php
+$element = $accountForm->get('account')->get('firstname');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $accountForm->get('account')->get('lastname');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $accountForm->get('account')->get('email');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $accountForm->get('account')->get('re-email');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $accountForm->get('account')->get('password');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+
+$element = $accountForm->get('account')->get('re-password');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+$element = $accountForm->get('account')->get('submit');
+echo $this->formLabel($element);
+echo $this->formElement($element);
+
+echo $this->form()->closeTag();
+
+?>
+</div>
+</div>
