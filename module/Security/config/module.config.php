@@ -11,7 +11,7 @@ return array(
                     ,'options' => array(
                         'use_as_base_fieldset' => false
                     ) ));
-                
+
                 return $form;
             },
 
@@ -24,7 +24,7 @@ return array(
                         ,'options' => array(
                             'use_as_base_fieldset' => false
                         ) ));
-                    
+
                     return $form;
                 },
                 ),

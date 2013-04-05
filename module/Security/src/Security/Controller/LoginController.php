@@ -33,7 +33,7 @@ class LoginController extends AbstractActionController
     public function indexAction(){
         return array(
             'flashMessages'=> $this->flashMessenger()->getMessages(),
-            'users' => $this->getAuthService()->hasIdentity()
+            'users' => $this->getUserTable()->fetchAll()
         );
     }    
 

@@ -23,6 +23,9 @@ class User
 
     public function setUsername($username)
     {
+        if(!isset($username)){
+            $username = 'asd';
+        }
         $this->username = $username;
     }
 
